@@ -1,0 +1,22 @@
+{
+  "name": "testproject",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Shawn59/TestProject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Shawn59/TestProject/issues"
+  },
+  "homepage": "https://github.com/Shawn59/TestProject#readme",
+  "dependencies": {
+    "angular": "^1.7.8"
+  }
+}
