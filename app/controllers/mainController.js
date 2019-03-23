@@ -1,4 +1,4 @@
-myApp.controller('mainController', function($scope, $locale) {
+appRoute.controller('mainController', function($scope, $locale) {
 
 $scope.name = 'Уася';
 });

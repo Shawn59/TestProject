@@ -1,10 +1,10 @@
 "use strict";
 // строгий режим по современному стандарту ES5
 
+
 //настройка маршрутизации
-var myApp = angular.module('myApp', ['ngRoute']);
-myApp.config(function($routeProvider, $locationProvider) {
-    //$locationProvider.html5Mode({enabled:true,requireBase:false});
+var appRoute = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
+appRoute.config(function($routeProvider, $locationProvider) {
     $routeProvider
         .when('/main', {
             templateUrl: 'app/views/mainView.html',

@@ -1,6 +1,19 @@
-form {
-  .form {
-    width: 100%;
-    height: 100%;
+@buttonBackground: #6699ff;
+@buttonTextColor: white;
+@buttonBackgroundHover: rgb(63,81,181);
+@fontFamily: 'Open sans';
+
+.form-main {
+  font-family: @fontFamily;
+  width: 400px;
+
+  .md-button {
+    background: @buttonBackground;
+    color: @buttonTextColor;
+  }
+
+  .md-button:not([disabled]):hover {
+    background-color: @buttonBackgroundHover;
   }
 }
+

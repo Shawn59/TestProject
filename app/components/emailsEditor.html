@@ -1,0 +1,14 @@
+<div class="block-email">
+    <form name="emailsEditorForm">
+        <md-chips
+            name="emailsEditorChips"
+            ng-model="listEmails"
+            placeholder="Add more emails..."
+        >
+        </md-chips>
+        <div ng-messages="emailsEditorForm.emailsEditorChips.$error" ng-if="emailsEditorForm.$dirty">
+            <div ng-message="md-max-chips">You reached the maximum amount of chips</div>
+        <md-button class="md-raised md-primary">Add random email</md-button>
+        <md-button class="md-raised md-primary">Get count emails</md-button>
+    </form>
+</div>
