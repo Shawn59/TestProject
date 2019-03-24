@@ -25,7 +25,7 @@ appRoute.directive('emailsEditor', function ($mdConstant) {
                 if (listEmails.length > 1) {
                     scope.listEmails.splice(index, 1);
                     for (var i = 0; i < listEmails.length; i++) {
-                        if (EMAIL_PATTERN.test(listEmails[i])) {
+                        if (EMAIL_PATTERN.test(listEmails[i]) && scope.listEmails.indexOf(listEmails[i]) == -1) {
                             scope.listEmails.push(listEmails[i]);
                         }
                     }
