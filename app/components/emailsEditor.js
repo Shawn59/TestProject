@@ -20,22 +20,26 @@ appRoute.directive('emailsEditor', function ($mdConstant) {
             ];
 
             scope.changeChips = function (chip, index) {
-                var chipName = chip;
+                var listEmails = chip.trim().split(' '),
+                    chipName = null;
+                if (listEmails.length > 1) {
+                    scope.listEmails.splice(index, 1);
+                    for (var i = 0; i < listEmails.length; i++) {
+                        if (EMAIL_PATTERN.test(listEmails[i])) {
+                            scope.listEmails.push(listEmails[i]);
+                        }
+                    }
+                } else {
+                    chipName = chip;
+                }
                 angular.element(document.querySelector('#' + scope.id)).ready(function () {
-                    if (!EMAIL_PATTERN.test(chipName)) {
+                    if (chipName && !EMAIL_PATTERN.test(chipName)) {
                         var elem = angular.element(document.querySelectorAll('md-chip'));
                         elem[elem.length - 1].style = 'border-bottom: 2px solid red';
                     }
                 });
             };
 
-            /*s = element.find('input');
-
-            element.find('input').keydown(function(e) {
-                if (ctrlDown && (e.keyCode == cKey)) console.log("Document catch Ctrl+C");
-                if (ctrlDown && (e.keyCode == vKey)) console.log("Document catch Ctrl+V");
-            });
-*/
             scope.addRandomEmail = function () {
                 var email = Math.random().toString(36).substr(2, 7) + '@gmail.com';
                 // оригинальная директива chips крошится при добавлении дубликата
