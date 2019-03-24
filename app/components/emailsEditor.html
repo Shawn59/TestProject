@@ -1,14 +1,23 @@
-<div class="block-email">
-    <form name="emailsEditorForm">
-        <md-chips
-            name="emailsEditorChips"
-            ng-model="listEmails"
-            placeholder="Add more emails..."
-        >
-        </md-chips>
-        <div ng-messages="emailsEditorForm.emailsEditorChips.$error" ng-if="emailsEditorForm.$dirty">
-            <div ng-message="md-max-chips">You reached the maximum amount of chips</div>
-        <md-button class="md-raised md-primary">Add random email</md-button>
-        <md-button class="md-raised md-primary">Get count emails</md-button>
-    </form>
-</div>
+<form name="emailsEditorForm" class="form-emailsEditor">
+    <div class="block-emailsEditor">
+        <div class="row-header">
+            Share <span>Board name</span> with other
+        </div>
+        <div class="row-content">
+            <md-chips
+                    name="name"
+                    id='IIIDDD'
+                    ng-model="listEmails"
+                    placeholder="Add more emails..."
+                    md-add-on-blur="true"
+                    md-on-add="changeChips($chip, $index);"
+                    md-separator-keys="keys"
+            >
+            </md-chips>
+        </div>
+        <div class="row-footer">
+            <md-button class="md-raised md-primary" ng-click="::addRandomEmail();">Add email</md-button>
+            <md-button class="md-raised md-primary" ng-click="::showCount();">Get count emails</md-button>
+        </div>
+    </div>
+</form>
