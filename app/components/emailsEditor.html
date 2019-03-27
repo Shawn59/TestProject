@@ -7,17 +7,13 @@
             <md-chips
                     name="{{name}}"
                     id="{{id}}"
-                    ng-model="listEmails"
+                    ng-model="emails"
                     placeholder="Add more emails..."
                     md-add-on-blur="true"
                     md-on-add="changeChips($chip, $index);"
                     md-separator-keys="keys"
             >
             </md-chips>
-        </div>
-        <div class="row-footer">
-            <md-button class="md-raised md-primary" ng-click="::addRandomEmail();">Add email</md-button>
-            <md-button class="md-raised md-primary" ng-click="::showCount();">Get email count</md-button>
         </div>
     </div>
 </form>

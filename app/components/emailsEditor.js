@@ -3,12 +3,16 @@ appRoute.directive('emailsEditor', function ($mdConstant) {
     var EMAIL_PATTERN = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     return {
         //изоляция скоупа
-        scope: {},
+        scope: {
+            'emails': '='
+        },
         // директива работает только в качестве тега
         restrict: 'E',
         templateUrl: 'app/components/emailsEditor.html',
         link: function (scope, element, attrs) {
-            scope.listEmails = [];
+            if (!scope.emails) {
+                scope.emails = [];
+            }
             scope.name = attrs.name || 'emailsEditorChips';
             //require
             scope.id = attrs.id || 'emailsEditorChipsId';
@@ -20,13 +24,13 @@ appRoute.directive('emailsEditor', function ($mdConstant) {
             ];
 
             scope.changeChips = function (chip, index) {
-                var listEmails = chip.trim().split(' '),
+                var customEmails = chip.trim().split(' '),
                     chipName = null;
-                if (listEmails.length > 1) {
-                    scope.listEmails.splice(index, 1);
-                    for (var i = 0; i < listEmails.length; i++) {
-                        if (EMAIL_PATTERN.test(listEmails[i]) && scope.listEmails.indexOf(listEmails[i]) == -1) {
-                            scope.listEmails.push(listEmails[i]);
+                if (customEmails.length > 1) {
+                    scope.emails.splice(index, 1);
+                    for (var i = 0; i < customEmails.length; i++) {
+                        if (EMAIL_PATTERN.test(customEmails[i]) && scope.emails.indexOf(customEmails[i]) == -1) {
+                            scope.emails.push(customEmails[i]);
                         }
                     }
                 } else {
@@ -38,19 +42,6 @@ appRoute.directive('emailsEditor', function ($mdConstant) {
                         elem[elem.length - 1].style = 'border-bottom: 2px solid red';
                     }
                 });
-            };
-
-            scope.addRandomEmail = function () {
-                var email = Math.random().toString(36).substr(2, 7) + '@gmail.com';
-                // оригинальная директива chips крошится при добавлении дубликата
-                // решил не циклить в поисках уникального, просто пропускаю ^^,
-                if (scope.listEmails.indexOf(email) == -1) {
-                    scope.listEmails.push(email);
-                }
-            };
-
-            scope.showCount = function () {
-                alert('Количество почтовых ящиков = ' + scope.listEmails.length);
             };
         }
     }

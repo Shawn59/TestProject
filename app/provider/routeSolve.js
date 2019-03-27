@@ -10,7 +10,7 @@ appRoute.config(function($routeProvider, $locationProvider) {
             templateUrl: 'app/views/mainView.html',
             controller: 'mainController'
         })
-        .otherwise("/", {
+        .otherwise({
             redirectTo: '/'
         });
 
