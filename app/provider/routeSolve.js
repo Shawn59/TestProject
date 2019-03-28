@@ -5,7 +5,6 @@
 //настройка маршрутизации
 var appRoute = angular.module('myApp', ['ngRoute', 'ngMaterial', 'ngMessages']);
 appRoute.config(function($routeProvider, $locationProvider) {
-    var EMAIL_PATTERN = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
     $routeProvider
         .when('/main', {
             templateUrl: 'app/views/mainView.html',
