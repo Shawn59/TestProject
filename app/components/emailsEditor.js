@@ -28,7 +28,7 @@ appRoute.directive('emailsEditor', function ($mdConstant, myConstants, $timeout)
                     if (customEmails.length > 1) {
                         scope.listEmails.splice(index, 1);
                         for (var i = 0; i < customEmails.length; i++) {
-                            if (scope.listEmails.indexOf(customEmails[i]) == -1) {
+                            if (customEmails[i].trim() != '' && scope.listEmails.indexOf(customEmails[i]) == -1) {
                                 scope.listEmails.push(customEmails[i]);
                                 countNewEmails++;
                             }
@@ -41,29 +41,10 @@ appRoute.directive('emailsEditor', function ($mdConstant, myConstants, $timeout)
                         self.changeListEmails(countNewEmails)
                     }
                 }
-
-               /* var customEmails = chip.trim().split(' '),
-                    chipName = null;
-                if (customEmails.length > 1) {
-                    scope.listEmails.splice(index, 1);
-                    for (var i = 0; i < customEmails.length; i++) {
-                        if (myConstants.EMAIL_PATTERN.test(customEmails[i]) && scope.listEmails.indexOf(customEmails[i]) == -1) {
-                            scope.listEmails.push(customEmails[i]);
-                        }
-                    }
-                } else {
-                    chipName = chip;
-                }
-                angular.element(document.querySelector('#' + scope.id)).ready(function () {
-                    if (chipName && !myConstants.EMAIL_PATTERN.test(chipName)) {
-                        var elem = angular.element(document.querySelectorAll('md-chip'));
-                        elem[elem.length - 1].style = 'border-bottom: 2px solid red';
-                    }
-                });*/
             };
 
             self.changeListEmails = function (countNewEmails) {
-                angular.element(document.querySelector('#' + scope.id)).ready(function () {
+                element.ready(function () {
                     // думаю нет особо думать о производительности в данном контексте
                     for (var i = scope.listEmails.length - countNewEmails; i <= scope.listEmails.length - 1; i++) {
                         if (!myConstants.EMAIL_PATTERN.test(scope.listEmails[i])) {
@@ -78,13 +59,15 @@ appRoute.directive('emailsEditor', function ($mdConstant, myConstants, $timeout)
                 var elemInput = element.find('input');
                 // я до последнего верил в силу keyup. Но он не хотел нормально работать)) Поэтому так:
                 elemInput.on('paste', function (event) {
-                    var customEmails = '';
-                    if ((customEmails = event.clipboardData.getData('Text')).trim() != '') {
+                    // если вдруг до копирования уже что-то было в инпуте
+                    var customEmails = elemInput.val() + event.clipboardData.getData('Text').trim();
+                    if (customEmails) {
+                        elemInput.val('');
                         customEmails = customEmails.split(' ');
                         var countNewEmails = 0;
-                        for (var i = 0; i < customEmails.length; i++) {
-                            // дубли отбрасываем
-                            if (scope.listEmails.indexOf(customEmails[i]) == -1) {
+                            for (var i = 0; i < customEmails.length; i++) {
+                            // Дубли отбрасываем
+                            if (customEmails[i].trim() != '' && scope.listEmails.indexOf(customEmails[i]) == -1) {
                                 scope.listEmails.push(customEmails[i]);
                                 countNewEmails++;
                             }
