@@ -1,15 +1,19 @@
 <div class="form-main">
     <!-- Вызываем 2 директивки для демонстрации-->
     <div class="block-emails">
-        <emails-editor id="emailsEditorChips" emails = listEmails></emails-editor>
+        <emails-editor id="emailsEditorID" emails = listEmails></emails-editor>
         <div class="row-button">
-            <md-button class="md-raised md-primary" ng-click="mainController.addRandomEmail();">Add email</md-button>
-            <md-button class="md-raised md-primary" ng-click="mainController.showCount();">Get email count</md-button>
+            <md-button class="md-raised md-primary" ng-click="addRandomEmail();">Add email</md-button>
+            <md-button class="md-raised md-primary" ng-click="showCount();">Get email count</md-button>
         </div>
     </div>
     <!--<div class="block-emails">
         <emails-editor id="ddd">
 
         </emails-editor>
+    </div>
+    <div class="row-button">
+        <md-button class="md-raised md-primary" ng-click="addRandomEmail();">Add email</md-button>
+        <md-button class="md-raised md-primary" ng-click="showCount();">Get email count</md-button>
     </div>-->
 </div>
